@@ -1,4 +1,4 @@
-# Data structure and algorithm problem
+# Data structure and algorithm problem using C++
 
 ## following data structure covered in this repo
 
