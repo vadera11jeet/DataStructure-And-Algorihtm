@@ -72,28 +72,65 @@ class BinaryTree
             inOrder(root->right);
         }
 
-        void printAllPaths(Node *root, string path)
-        {
-            if(!root)
-                return;
-            if(!root->left && !root->right)
+            void printAllPaths(Node *root, string path)
             {
-                cout<<path<<endl;
+                if(!root)
+                    return;
+                if(!root->left && !root->right)
+                {
+                    cout<<path<<endl;
+                    return;
+                }
+                string op1 = path;
+                string op2 = path;
+
+                if(root->left)
+                {
+                    op1.push_back(' ');
+                    op1 = op1 + to_string(root->left->data);
+                }
+
+                if(root->right)
+                {
+                    op2.push_back(' ');
+                    op2 = op2 + to_string(root->right->data);
+                }
+
+                printAllPaths(root->left, op1);
+                printAllPaths(root->right, op2);
+            }
+
+//       this is more memory efficient approach because here we pass temp vector as reference
+         void pathsUtil(Node * root, vector<vector<int>> & ans, vector<int> & temp)
+         {
+
+            if(root == NULL)
+                return;
+
+            temp.push_back(root->data);
+
+            if(root->left == NULL && root->right == NULL)
+            {
+                ans.push_back(temp);
                 return;
             }
-            string op1 = path;
-            string op2 = path;
 
-            op1.push_back(' ');
-            op1 = op1 + to_string(root->left->data);
-            op2.push_back(' ');
-            op2 = op2 + to_string(root->right->data);
+            if(root->left)
+            {
+                pathsUtil(root->left, ans, temp);
+                temp.pop_back();
+            }
+            if(root->right)
+            {
+                pathsUtil(root->right, ans, temp);
 
-            printAllPaths(root->left, op1);
-            printAllPaths(root->right, op2);
+                temp.pop_back();
+
+            }
+            return;
+ }
 
 
-        }
 };
 
 int main()

@@ -71,7 +71,9 @@ class BinaryTree
             inOrder(root->right);
         }
 
-//        first element of level order traversal of binary tree gives you
+//    first element of level order traversal of binary tree gives you left sub tree of binary tree
+//    so here we use level order traversal to and we find first element of every level and print it's value
+//    here we find null in queue that means one level of tree is completed and we start new level and print a value
 
         void leftViewOfBinaryTree()
         {
@@ -102,6 +104,41 @@ class BinaryTree
             }
 
         }
+//     this approach is optimized approach in terms of space complexity this approach take space of O(depth of tree) above approach take O(n) space
+
+        void leftViewUtil(Node *root, int height, vector<bool> &level, vector<int>& vec)
+        {
+            if(!root)
+                return;
+
+            if(level[height] == false)
+            {
+                vec.push_back(root->data);
+                level[height] = true;
+            }
+
+            leftViewUtil(root->left, height + 1, level, vec);
+            leftViewUtil(root->right, height + 1, level, vec);
+
+        }
+
+
+        vector<int> leftView(Node *root)
+        {
+           // Your code here
+           vector<bool> level(100, false);
+           vector<int> ans;
+
+           int height = 0;
+
+           leftViewUtil(root, height, level, ans);
+
+           return ans;
+
+
+        }
+
+
 };
 
 

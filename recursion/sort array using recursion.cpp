@@ -32,11 +32,11 @@ int main()
 {
     vector<int> v;
 
-    v.push_back(5);
-    v.push_back(4);
-    v.push_back(3);
-    v.push_back(2);
-    v.push_back(1);
+    v.push_back(50);
+    v.push_back(46);
+    v.push_back(333);
+    v.push_back(28);
+    v.push_back(0);
 
     sort_(v);
 

@@ -95,6 +95,28 @@ class BinaryTree
                 }
             }
         }
+
+//  another method to solve this problem
+       void diagonalElement()
+       {
+           queue<Node *> q;
+           q.push(root);
+
+           while(!q.empty())
+           {
+               Node * temp = q.front();
+               q.pop();
+               while(temp)
+               {
+                   if(temp->left)
+                        q.push(temp->left);
+                   cout<<temp->data<<"  ";
+                   temp = temp->right;
+               }
+           }
+
+       }
+
 };
 
 
@@ -113,6 +135,8 @@ int main()
 
 
     b.printDiagonal();
+    cout<<endl;
+    b.diagonalElement();
 
     return 0;
 }

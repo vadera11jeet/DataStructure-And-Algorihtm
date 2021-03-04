@@ -25,7 +25,7 @@ int search_(int val, int arr[], int start, int end_)
         if(arr[i] == val)
             return i;
     }
-    return INT_MIN;
+    return -1;
 }
 
 Node * buildTree(int in[], int pre [], int start ,int end_)
@@ -44,9 +44,6 @@ Node * buildTree(int in[], int pre [], int start ,int end_)
 
     node->left = buildTree(in, pre, start, inIndex-1);
     node->right = buildTree(in, pre, inIndex+1, end_);
-
-
-
 }
 
 void inOrder(Node *root)
@@ -63,7 +60,7 @@ int main()
     int in[] = { 4, 2, 5, 1, 3, 6 };
     int pre[] = { 1, 2, 4, 5, 3, 6 };
 
-    Node *root = buildTree(in,pre,0,6);
+    Node *root = buildTree(in,pre,0,5);
 
     inOrder(root);
 

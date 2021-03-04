@@ -133,6 +133,66 @@ class BinaryTree
                 }
             }
         }
+//  another method with time complexity  O(N) and space complexity with O(h) which is more optimal form above method
+    void printLeft(Node *root, vector<int> &ans)
+    {
+        if(!root)
+            return ;
+        if(root->left)
+        {
+            ans.push_back(root->data);
+            printLeft(root->left, ans);
+        }
+        else if(root->right)
+        {
+            ans.push_back(root->data);
+            printLeft(root->right, ans);
+        }
+    }
+
+    void printRight(Node *root, vector<int> &ans)
+    {
+        if(!root)
+            return;
+
+        if(root->right)
+        {
+            printRight(root->right, ans);
+            ans.push_back(root->data);
+        }
+        else if(root->left)
+        {
+            printRight(root->left, ans);
+            ans.push_back(root->data);
+        }
+
+    }
+
+    void printLeaf(Node *root, vector<int> & ans)
+    {
+        if(!root)
+            return;
+
+        printLeaf(root->left, ans);
+        if(!root->left and !root->right)
+            ans.push_back(root->data);
+        printLeaf(root->right, ans);
+
+
+    }
+
+    vector <int> printBoundary(Node *root)
+    {
+        vector<int>ans;
+        ans.push_back(root->data);
+        printLeft(root->left, ans);
+        printLeaf(root, ans);
+        printRight(root->right, ans);
+        return ans;
+    }
+
+
+
 };
 
 
